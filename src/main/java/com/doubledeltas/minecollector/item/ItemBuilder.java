@@ -40,7 +40,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder glowing() {
-        meta.addEnchant(Enchantment.ARROW_INFINITE, 1, false);
+        meta.addEnchant(Enchantment.INFINITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         return this;
     }

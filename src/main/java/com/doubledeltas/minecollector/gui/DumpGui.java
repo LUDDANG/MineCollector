@@ -65,7 +65,7 @@ public class DumpGui extends Gui {
 
             setState(ProcessState.OK);
             SoundUtil.playCollect(player);
-            player.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, player.getLocation(), 100, 1, 1, 1);
+            player.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, player.getLocation(), 100, 1, 1, 1);
         }
 
         else if (e.getRawSlot() == INDEX_BACK) {

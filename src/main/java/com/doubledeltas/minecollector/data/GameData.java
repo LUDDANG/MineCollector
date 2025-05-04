@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.advancement.AdvancementDisplayType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.error.YAMLException;
@@ -20,11 +21,11 @@ import java.util.UUID;
 
 public class GameData {
     private String name;
-    private UUID uuid;
-    private Map<String, Integer> collection;
-    private Map<AdvancementDisplayType, Integer> advCleared;
+    private final UUID uuid;
+    private final Map<String, Integer> collection;
+    private final Map<AdvancementDisplayType, Integer> advCleared;
 
-    public GameData(Player player) {
+    public GameData(@NotNull Player player) {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.collection = new LinkedHashMap<>();
@@ -39,7 +40,8 @@ public class GameData {
      * @param map 불러올 {@code Map} 객체
      * @see GameData#toMap()
      */
-    public GameData(Map map) {
+    @SuppressWarnings("unchecked")
+    public GameData(@NotNull Map<?, ?> map) {
         this.name = (String) map.get("name");
         this.uuid = UUID.fromString((String) map.get("uuid"));
         this.collection = (Map<String, Integer>) map.get("collection");
@@ -85,7 +87,7 @@ public class GameData {
     public static GameData loadFromYaml(Reader reader)
         throws YAMLException
     {
-        return new GameData(Yamls.getDataYaml().loadAs(reader, Map.class));
+        return new GameData(Yamls.getDataYaml().<Map<?, ?>>loadAs(reader, Map.class));
     }
 
     /**

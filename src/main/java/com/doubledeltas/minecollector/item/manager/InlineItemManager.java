@@ -68,56 +68,56 @@ public class InlineItemManager extends ItemManager {
     private ItemStack getGuiNoPrev() {
         return new ItemBuilder(Material.RED_BANNER)
                 .displayName("§c이전 페이지가 없습니다")
-                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS_MIDDLE)
-                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL_MIRROR)
+                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS)
+                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL_RIGHT)
                 .addBannerPattern(DyeColor.RED, PatternType.SQUARE_TOP_RIGHT)
                 .addBannerPattern(DyeColor.RED, PatternType.SQUARE_BOTTOM_RIGHT)
                 .addBannerPattern(DyeColor.RED, PatternType.TRIANGLES_TOP)
                 .addBannerPattern(DyeColor.RED, PatternType.TRIANGLES_BOTTOM)
                 .addBannerPattern(DyeColor.RED, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .build();
     }
 
     private ItemStack getGuiPrev() {
         return new ItemBuilder(Material.BLACK_BANNER)
                 .displayName("§e이전 페이지로")
-                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS_MIDDLE)
-                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL_MIRROR)
+                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS)
+                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL_RIGHT)
                 .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_TOP_RIGHT)
                 .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_BOTTOM_RIGHT)
                 .addBannerPattern(DyeColor.BLACK, PatternType.TRIANGLES_TOP)
                 .addBannerPattern(DyeColor.BLACK, PatternType.TRIANGLES_BOTTOM)
                 .addBannerPattern(DyeColor.BLACK, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .build();
     }
 
     private ItemStack getGuiNoNext() {
         return new ItemBuilder(Material.RED_BANNER)
                 .displayName("§c다음 페이지가 없습니다")
-                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS_MIDDLE)
-                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL)
-                .addBannerPattern(DyeColor.RED, PatternType.SQUARE_TOP_LEFT)
-                .addBannerPattern(DyeColor.RED, PatternType.SQUARE_BOTTOM_LEFT)
-                .addBannerPattern(DyeColor.RED, PatternType.TRIANGLES_TOP)
-                .addBannerPattern(DyeColor.RED, PatternType.TRIANGLES_BOTTOM)
-                .addBannerPattern(DyeColor.RED, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS)
+                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL_RIGHT)
+                .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_TOP_RIGHT)
+                .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_BOTTOM_RIGHT)
+                .addBannerPattern(DyeColor.BLACK, PatternType.TRIANGLES_TOP)
+                .addBannerPattern(DyeColor.BLACK, PatternType.TRIANGLES_BOTTOM)
+                .addBannerPattern(DyeColor.BLACK, PatternType.BORDER)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .build();
     }
 
     private ItemStack getGuiNext() {
         return new ItemBuilder(Material.BLACK_BANNER)
                 .displayName("§e다음 페이지로")
-                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS_MIDDLE)
-                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL)
-                .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_TOP_LEFT)
-                .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_BOTTOM_LEFT)
+                .addBannerPattern(DyeColor.WHITE, PatternType.RHOMBUS)
+                .addBannerPattern(DyeColor.WHITE, PatternType.HALF_VERTICAL_RIGHT)
+                .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_TOP_RIGHT)
+                .addBannerPattern(DyeColor.BLACK, PatternType.SQUARE_BOTTOM_RIGHT)
                 .addBannerPattern(DyeColor.BLACK, PatternType.TRIANGLES_TOP)
                 .addBannerPattern(DyeColor.BLACK, PatternType.TRIANGLES_BOTTOM)
                 .addBannerPattern(DyeColor.BLACK, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .build();
     }
 
@@ -145,20 +145,20 @@ public class InlineItemManager extends ItemManager {
         return new ItemBuilder(Material.MOJANG_BANNER_PATTERN)
                 .displayName("§d§l[ §f랭킹 §d§l]")
                 .lore("§7수집 점수가 가장 높은 TOP 10을 보여줍니다.")
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .build();
     }
 
     private ItemStack getGuiUnknown() {
         return new ItemBuilder(Material.LIGHT_GRAY_BANNER)
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_RIGHT)
-                .addBannerPattern(DyeColor.LIGHT_GRAY, PatternType.HALF_HORIZONTAL_MIRROR)
+                .addBannerPattern(DyeColor.LIGHT_GRAY, PatternType.HALF_HORIZONTAL_BOTTOM)
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_TOP)
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_MIDDLE)
                 .addBannerPattern(DyeColor.WHITE, PatternType.SQUARE_BOTTOM_LEFT)
                 .addBannerPattern(DyeColor.LIGHT_GRAY, PatternType.BORDER)
                 .displayName("§7???")
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .build();
     }
 
@@ -169,7 +169,7 @@ public class InlineItemManager extends ItemManager {
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_BOTTOM)
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_RIGHT)
                 .addBannerPattern(DyeColor.LIME, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .displayName("§a수집하기!")
                 .build();
     }
@@ -177,9 +177,9 @@ public class InlineItemManager extends ItemManager {
     private ItemStack getGuiHmm() {
         return new ItemBuilder(Material.ORANGE_BANNER)
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_MIDDLE)
-                .addBannerPattern(DyeColor.ORANGE, PatternType.STRIPE_SMALL)
+                .addBannerPattern(DyeColor.ORANGE, PatternType.SMALL_STRIPES)
                 .addBannerPattern(DyeColor.ORANGE, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .displayName("§e수집 중입니다...")
                 .build();
     }
@@ -189,7 +189,7 @@ public class InlineItemManager extends ItemManager {
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_DOWNLEFT)
                 .addBannerPattern(DyeColor.WHITE, PatternType.STRIPE_DOWNRIGHT)
                 .addBannerPattern(DyeColor.RED, PatternType.BORDER)
-                .itemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                .itemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 .displayName("§c수집할 수 없습니다!")
                 .build();
     }

@@ -83,7 +83,7 @@ public final class CollectCommand extends CommandRoot {
         player.getInventory().setItemInMainHand(handItem);
 
         SoundUtil.playCollect(player);
-        player.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, player.getLocation(), 100, 1, 1, 1);
+        player.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, player.getLocation(), 100, 1, 1, 1);
         return true;
     }
 
