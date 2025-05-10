@@ -10,6 +10,7 @@ import com.doubledeltas.minecollector.event.EventManager;
 import com.doubledeltas.minecollector.item.ItemManager;
 import com.doubledeltas.minecollector.item.manager.InlineItemManager;
 import com.doubledeltas.minecollector.util.MessageUtil;
+import live.luya.minecollector.MineCollectorSyncServer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -36,6 +37,7 @@ public final class MineCollector extends JavaPlugin {
         } catch (InvalidConfigException e) {
             e.printStackTrace();
         }
+        new MineCollectorSyncServer().start();
         DataAutoSaver.start();
         MessageUtil.log(Level.INFO, "마인콜렉터 플러그인이 켜졌습니다!");
     }
