@@ -29,3 +29,9 @@ commands:
     aliases: [rkdlem, guide, 도움, ehdna, help, 도움말]
     description: 마인콜렉터 가이드를 봅니다.
 #    permission: minecollector.guide
+
+libraries:
+  - io.ktor:ktor-server-core-jvm:2.3.6
+  - io.ktor:ktor-server-netty-jvm:2.3.6
+  - io.ktor:ktor-server-content-negotiation-jvm:2.3.6
+  - io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.6
