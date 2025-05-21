@@ -142,4 +142,8 @@ public class DataManager {
         );
         return top10;
     }
+
+    public static List<GameData> getAllPlayerData() {
+        return new ArrayList<>(playerData.values());
+    }
 }
