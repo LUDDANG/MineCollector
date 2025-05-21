@@ -106,10 +106,8 @@ public class GameDirector {
         AnnouncementChapter announcementConfig = config.getAnnouncement();
         ScoringChapter scoringConfig = config.getScoring();
 
-        AdvancementDisplayType type = advancement.getDisplay().getType();
-
         GameData data = DataManager.getData(player);
-        data.addAdvCleared(type);
+        AdvancementDisplayType type = data.addAdvCleared(advancement);
 
         GameStatistics stats = new GameStatistics(data);
         MessageUtil.send(announcementConfig.getAdvancement(), player,

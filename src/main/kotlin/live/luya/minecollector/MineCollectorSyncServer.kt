@@ -10,13 +10,17 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import live.luya.minecollector.serialization.GsonDateConverter
+import java.util.*
 
 import java.util.concurrent.TimeUnit
 
 class MineCollectorSyncServer {
     private val server = embeddedServer(Netty, port = 8080) {
         install(ContentNegotiation) {
-            gson(ContentType.Application.Json) {}
+            gson(ContentType.Application.Json) {
+                registerTypeAdapter(Date::class.java, GsonDateConverter())
+            }
         }
 
         routing {
