@@ -2,6 +2,7 @@ package live.luya.minecollector
 
 import com.doubledeltas.minecollector.MineCollector
 import com.doubledeltas.minecollector.data.DataManager
+import com.doubledeltas.minecollector.data.GameStatistics
 import io.ktor.http.*
 import io.ktor.serialization.gson.*
 import io.ktor.server.application.*
@@ -29,7 +30,13 @@ class MineCollectorSyncServer {
             }
             get("/player-data") {
                 val data = DataManager.getAllPlayerData()
-                    .map { it.toMap() }
+                    .map {
+                        val map = it.toMap()
+                        val stat = GameStatistics(it)
+                        map["scores"] = stat.toMap()
+
+                        return@map map
+                    }
                 call.respond(data)
             }
         }
