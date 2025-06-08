@@ -16,7 +16,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MineCollectorSyncServer {
-    private val server = embeddedServer(Netty, port = 8080) {
+    private val server = embeddedServer(Netty, port = (System.getenv("PORT") ?: "3000").toInt()) {
         install(ContentNegotiation) {
             gson(ContentType.Application.Json) {
                 registerTypeAdapter(Date::class.java, GsonDateConverter())
