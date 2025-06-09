@@ -3,6 +3,7 @@ package com.doubledeltas.minecollector.data;
 import com.doubledeltas.minecollector.MineCollector;
 import com.doubledeltas.minecollector.util.CollectionLevelUtil;
 import com.doubledeltas.minecollector.util.Yamls;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementDisplay;
@@ -14,6 +15,7 @@ import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.Reader;
 import java.io.Writer;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,6 +27,7 @@ public class GameData {
     private final Map<String, Integer> collection;
     private final Map<AdvancementDisplayType, Integer> advCleared;
     private final Map<String, Date> advancementLogs;
+    @Getter private BigDecimal mileage;
 
     public GameData(@NotNull Player player) {
         this.name = player.getName();
@@ -35,6 +38,7 @@ public class GameData {
         advCleared.put(AdvancementDisplayType.TASK, 0);
         advCleared.put(AdvancementDisplayType.GOAL, 0);
         advCleared.put(AdvancementDisplayType.CHALLENGE, 0);
+        this.mileage = BigDecimal.ZERO;
     }
 
     /**
@@ -53,6 +57,7 @@ public class GameData {
         advCleared.put(AdvancementDisplayType.TASK, advClearedStringKeyed.get("task"));
         advCleared.put(AdvancementDisplayType.GOAL, advClearedStringKeyed.get("goal"));
         advCleared.put(AdvancementDisplayType.CHALLENGE, advClearedStringKeyed.get("challenge"));
+        this.mileage = map.get("mileage") == null ? BigDecimal.ZERO : new BigDecimal((String) map.get("mileage"));
     }
 
     /**
@@ -72,6 +77,7 @@ public class GameData {
 
         map.put("advancement_cleared", advClearedStringKeyed);
         map.put("advancement_logs", advancementLogs);
+        map.put("mileage", mileage.toString());
         return map;
     }
 
@@ -212,5 +218,15 @@ public class GameData {
             this.advancementLogs.put(key, new Date());
 
         return resolvedType;
+    }
+
+    public BigDecimal depositMileage(BigDecimal amount) {
+        this.mileage = this.mileage.add(amount);
+        return this.mileage;
+    }
+
+    public BigDecimal withdrawMileage(BigDecimal amount) {
+        this.mileage = this.mileage.subtract(amount);
+        return this.mileage;
     }
 }
