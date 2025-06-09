@@ -6,10 +6,12 @@ import com.doubledeltas.minecollector.config.chapter.ScoringChapter;
 import com.doubledeltas.minecollector.data.DataManager;
 import com.doubledeltas.minecollector.data.GameData;
 import com.doubledeltas.minecollector.data.GameStatistics;
+import com.doubledeltas.minecollector.event.TotalScoreModifiedEvent;
 import com.doubledeltas.minecollector.gui.HubGui;
 import com.doubledeltas.minecollector.item.ItemManager;
 import com.doubledeltas.minecollector.item.itemCode.StaticItem;
 import com.doubledeltas.minecollector.util.CollectionLevelUtil;
+import com.doubledeltas.minecollector.util.GameDataUtil;
 import com.doubledeltas.minecollector.util.MessageUtil;
 import com.doubledeltas.minecollector.util.SoundUtil;
 import net.md_5.bungee.api.ChatColor;
@@ -17,12 +19,15 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementDisplayType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -50,6 +55,8 @@ public class GameDirector {
     public static void collect(Player player, Collection<ItemStack> items) {
 
         GameData data = DataManager.getData(player);
+        BigDecimal beforeTotalScore = GameDataUtil.getPlayerTotalScore(data);
+
         for (ItemStack item: items) {
             if (item.getType() == Material.AIR && data.getCollection(Material.AIR) > 0)
                 return;
@@ -70,6 +77,10 @@ public class GameDirector {
                 noticeLevelUp(player, item.getType(), i);
             }
         }
+
+        BigDecimal afterTotalScore = GameDataUtil.getPlayerTotalScore(data);
+        Event event = new TotalScoreModifiedEvent(player, data, beforeTotalScore, afterTotalScore);
+        Bukkit.getPluginManager().callEvent(event);
     }
 
     /**
@@ -107,12 +118,16 @@ public class GameDirector {
         ScoringChapter scoringConfig = config.getScoring();
 
         GameData data = DataManager.getData(player);
+        BigDecimal beforeTotalScore = GameDataUtil.getPlayerTotalScore(data);
         AdvancementDisplayType type = data.addAdvCleared(advancement);
+        BigDecimal afterTotalScore = GameDataUtil.getPlayerTotalScore(data);
 
-        GameStatistics stats = new GameStatistics(data);
+        Event event = new TotalScoreModifiedEvent(player, data, beforeTotalScore, afterTotalScore);
+        Bukkit.getPluginManager().callEvent(event);
+
         MessageUtil.send(announcementConfig.getAdvancement(), player,
                 "§e%s§f님이 발전과제 점수 §b§l%s§f점을 얻었습니다. (현재 §e%s§f점)"
-                        .formatted(player.getName(), scoringConfig.getAdvancementScores().get(type), stats.getTotalScore())
+                        .formatted(player.getName(), scoringConfig.getAdvancementScores().get(type), afterTotalScore)
         );
         for (Player p: announcementConfig.getAdvancement().resolve(player))
             SoundUtil.playFirework(p);
