@@ -220,12 +220,24 @@ public class GameData {
         return resolvedType;
     }
 
-    public BigDecimal depositMileage(BigDecimal amount) {
+    /**
+     * 마일리지를 증가시킵니다.
+     * @param amount 양수를 가진 {@link java.math.BigDecimal}
+     * @return 업데이트 된 마일리지 값 {@link java.math.BigDecimal}
+     */
+    public BigDecimal depositMileage(@NotNull BigDecimal amount) {
+        assert amount.compareTo(BigDecimal.ZERO) >= 0;
         this.mileage = this.mileage.add(amount);
         return this.mileage;
     }
 
-    public BigDecimal withdrawMileage(BigDecimal amount) {
+    /**
+     * 마일리지를 감소시킵니다.
+     * @param amount 음수를 가진 {@link java.math.BigDecimal}
+     * @return 업데이트 된 마일리지 값 {@link java.math.BigDecimal}
+     */
+    public BigDecimal withdrawMileage(@NotNull BigDecimal amount) {
+        assert amount.compareTo(BigDecimal.ZERO) <= 0;
         this.mileage = this.mileage.subtract(amount);
         return this.mileage;
     }
