@@ -6,7 +6,7 @@ import com.doubledeltas.minecollector.config.InvalidConfigException;
 import com.doubledeltas.minecollector.config.McolConfig;
 import com.doubledeltas.minecollector.data.DataAutoSaver;
 import com.doubledeltas.minecollector.data.DataManager;
-import com.doubledeltas.minecollector.event.EventManager;
+import com.doubledeltas.minecollector.listener.EventManager;
 import com.doubledeltas.minecollector.item.ItemManager;
 import com.doubledeltas.minecollector.item.manager.InlineItemManager;
 import com.doubledeltas.minecollector.util.MessageUtil;

@@ -1,4 +1,4 @@
-package com.doubledeltas.minecollector.event;
+package com.doubledeltas.minecollector.listener;
 
 import com.doubledeltas.minecollector.MineCollector;
 import com.doubledeltas.minecollector.config.chapter.GameChapter;

@@ -1,11 +1,8 @@
-package com.doubledeltas.minecollector.event;
+package com.doubledeltas.minecollector.listener;
 
 import com.doubledeltas.minecollector.GameDirector;
 import com.doubledeltas.minecollector.MineCollector;
-import com.doubledeltas.minecollector.gui.HubGui;
 import com.doubledeltas.minecollector.item.itemCode.StaticItem;
-import com.doubledeltas.minecollector.util.MessageUtil;
-import com.doubledeltas.minecollector.util.SoundUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
