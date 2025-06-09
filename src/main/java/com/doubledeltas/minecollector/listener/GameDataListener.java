@@ -1,6 +1,7 @@
 package com.doubledeltas.minecollector.listener;
 
 import com.doubledeltas.minecollector.MineCollector;
+import com.doubledeltas.minecollector.data.GameData;
 import com.doubledeltas.minecollector.event.TotalScoreModifiedEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,7 +21,12 @@ public class GameDataListener implements Listener {
             return;
         }
 
-        logger.info(String.format("deposit to player %s mileage of %s", event.getPlayer().getName(), delta.toPlainString()));
-        event.getGameData().depositMileage(delta);
+        GameData data = event.getGameData();
+        BigDecimal beforeMileage = data.getMileage();
+        BigDecimal afterMileage = data.depositMileage(delta);
+        logger.info(String.format(
+                "deposit to player %s mileage of %s (value updated %s -> %s)",
+                event.getPlayer().getName(), delta.toPlainString(), beforeMileage.toPlainString(), afterMileage.toPlainString()
+        ));
     }
 }
