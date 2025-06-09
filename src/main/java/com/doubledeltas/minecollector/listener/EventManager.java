@@ -11,7 +11,8 @@ public class EventManager {
             new PlayerInteractEventListener(),
             new PlayerLoginEventListener(),
             new PlayerAdvancementDontEventListener(),
-            new EntityDeathEventListener()
+            new EntityDeathEventListener(),
+            new GameDataListener()
     );
 
     public static void loadEventHandlers() {
