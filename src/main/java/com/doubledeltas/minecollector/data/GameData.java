@@ -15,7 +15,7 @@ import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.Reader;
 import java.io.Writer;
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class GameData {
     private final Map<String, Integer> collection;
     private final Map<AdvancementDisplayType, Integer> advCleared;
     private final Map<String, Date> advancementLogs;
-    @Getter private BigDecimal mileage;
+    @Getter private BigInteger mileage;
 
     public GameData(@NotNull Player player) {
         this.name = player.getName();
@@ -38,7 +38,7 @@ public class GameData {
         advCleared.put(AdvancementDisplayType.TASK, 0);
         advCleared.put(AdvancementDisplayType.GOAL, 0);
         advCleared.put(AdvancementDisplayType.CHALLENGE, 0);
-        this.mileage = BigDecimal.ZERO;
+        this.mileage = BigInteger.ZERO;
     }
 
     /**
@@ -57,7 +57,7 @@ public class GameData {
         advCleared.put(AdvancementDisplayType.TASK, advClearedStringKeyed.get("task"));
         advCleared.put(AdvancementDisplayType.GOAL, advClearedStringKeyed.get("goal"));
         advCleared.put(AdvancementDisplayType.CHALLENGE, advClearedStringKeyed.get("challenge"));
-        this.mileage = map.get("mileage") == null ? BigDecimal.ZERO : new BigDecimal((String) map.get("mileage"));
+        this.mileage = map.get("mileage") == null ? BigInteger.ZERO : new BigInteger((String) map.get("mileage"));
     }
 
     /**
@@ -222,22 +222,22 @@ public class GameData {
 
     /**
      * 마일리지를 증가시킵니다.
-     * @param amount 양수를 가진 {@link java.math.BigDecimal}
-     * @return 업데이트 된 마일리지 값 {@link java.math.BigDecimal}
+     * @param amount 양수를 가진 {@link java.math.BigInteger}
+     * @return 업데이트 된 마일리지 값 {@link java.math.BigInteger}
      */
-    public BigDecimal depositMileage(@NotNull BigDecimal amount) {
-        assert amount.compareTo(BigDecimal.ZERO) >= 0;
+    public BigInteger depositMileage(@NotNull BigInteger amount) {
+        assert amount.compareTo(BigInteger.ZERO) >= 0;
         this.mileage = this.mileage.add(amount);
         return this.mileage;
     }
 
     /**
      * 마일리지를 감소시킵니다.
-     * @param amount 음수를 가진 {@link java.math.BigDecimal}
-     * @return 업데이트 된 마일리지 값 {@link java.math.BigDecimal}
+     * @param amount 음수를 가진 {@link java.math.BigInteger}
+     * @return 업데이트 된 마일리지 값 {@link java.math.BigInteger}
      */
-    public BigDecimal withdrawMileage(@NotNull BigDecimal amount) {
-        assert amount.compareTo(BigDecimal.ZERO) <= 0;
+    public BigInteger withdrawMileage(@NotNull BigInteger amount) {
+        assert amount.compareTo(BigInteger.ZERO) <= 0;
         this.mileage = this.mileage.subtract(amount);
         return this.mileage;
     }

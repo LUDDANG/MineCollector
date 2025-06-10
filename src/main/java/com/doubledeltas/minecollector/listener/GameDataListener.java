@@ -8,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.logging.Logger;
 
 public class GameDataListener implements Listener {
@@ -15,18 +16,18 @@ public class GameDataListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void depositMileageWhenTotalScoreIncreased(TotalScoreModifiedEvent event) {
-        BigDecimal delta = event.getAfter().subtract(event.getBefore());
+        BigInteger delta = event.getAfter().subtract(event.getBefore()).toBigIntegerExact();
         if (delta.signum() != 1) {
             // ignore if before >= after
             return;
         }
 
         GameData data = event.getGameData();
-        BigDecimal beforeMileage = data.getMileage();
-        BigDecimal afterMileage = data.depositMileage(delta);
+        BigInteger beforeMileage = data.getMileage();
+        BigInteger afterMileage = data.depositMileage(delta);
         logger.info(String.format(
                 "deposit to player %s mileage of %s (value updated %s -> %s)",
-                event.getPlayer().getName(), delta.toPlainString(), beforeMileage.toPlainString(), afterMileage.toPlainString()
+                event.getPlayer().getName(), delta, beforeMileage.toString(), afterMileage.toString()
         ));
     }
 }
