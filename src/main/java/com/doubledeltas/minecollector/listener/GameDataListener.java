@@ -16,7 +16,7 @@ public class GameDataListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void depositMileageWhenTotalScoreIncreased(TotalScoreModifiedEvent event) {
-        BigInteger delta = event.getAfter().subtract(event.getBefore()).toBigIntegerExact();
+        BigInteger delta = event.getAfter().subtract(event.getBefore()).multiply(new BigDecimal(1000)).toBigIntegerExact();
         if (delta.signum() != 1) {
             // ignore if before >= after
             return;
