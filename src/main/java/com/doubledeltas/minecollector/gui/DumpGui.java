@@ -37,7 +37,7 @@ public class DumpGui extends Gui {
     public void onClick(Player player, InventoryClickEvent e) {
         final ItemStack AIR_ITEM = new ItemStack(Material.AIR);
 
-        if (45 <= e.getRawSlot() && e.getRawSlot() < 53)
+        if (45 <= e.getRawSlot() && e.getRawSlot() <= 53)
             e.setCancelled(true);
 
         if (e.getRawSlot() == INDEX_COLLECT && state == ProcessState.OK) {
