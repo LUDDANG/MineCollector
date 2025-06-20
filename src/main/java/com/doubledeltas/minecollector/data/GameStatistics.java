@@ -16,6 +16,7 @@ public class GameStatistics {
     private BigDecimal collectionScore;
     private BigDecimal stackScore;
     private BigDecimal advScore;
+    private BigDecimal bonusScore;
 
     /**
      * 게임 데이터로부터 통계를 구합니다.
@@ -57,6 +58,9 @@ public class GameStatistics {
         else {
             advScore = null;
         }
+
+        bonusScore = new BigDecimal(data.getExtendedData().getScoreBonus());
+        totalScore = totalScore.add(bonusScore);
     }
 
     /**
@@ -68,6 +72,7 @@ public class GameStatistics {
                 "collectionScore", collectionScore,
                 "stackScore", stackScore,
                 "advScore", advScore,
+                "bonusScore", bonusScore,
                 "totalScore", totalScore
         );
     }

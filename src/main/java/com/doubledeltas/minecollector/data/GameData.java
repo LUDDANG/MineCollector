@@ -22,12 +22,15 @@ import java.util.Map;
 import java.util.UUID;
 
 public class GameData {
+    private static final String EXTRA_DATA_KEY = "extra";
+
     private String name;
     private final UUID uuid;
     private final Map<String, Integer> collection;
     private final Map<AdvancementDisplayType, Integer> advCleared;
     private final Map<String, Date> advancementLogs;
     @Getter private BigInteger mileage;
+    @Getter private final ExtendedGameData extendedData;
 
     public GameData(@NotNull Player player) {
         this.name = player.getName();
@@ -39,6 +42,7 @@ public class GameData {
         advCleared.put(AdvancementDisplayType.GOAL, 0);
         advCleared.put(AdvancementDisplayType.CHALLENGE, 0);
         this.mileage = BigInteger.ZERO;
+        this.extendedData = new ExtendedGameData(Map.of());
     }
 
     /**
@@ -58,6 +62,10 @@ public class GameData {
         advCleared.put(AdvancementDisplayType.GOAL, advClearedStringKeyed.get("goal"));
         advCleared.put(AdvancementDisplayType.CHALLENGE, advClearedStringKeyed.get("challenge"));
         this.mileage = map.get("mileage") == null ? BigInteger.ZERO : new BigInteger((String) map.get("mileage"));
+
+        this.extendedData = map.containsKey(EXTRA_DATA_KEY)
+                ? new ExtendedGameData((Map<String, Object>) map.get(EXTRA_DATA_KEY))
+                : new ExtendedGameData(Map.of());
     }
 
     /**
@@ -78,6 +86,8 @@ public class GameData {
         map.put("advancement_cleared", advClearedStringKeyed);
         map.put("advancement_logs", advancementLogs);
         map.put("mileage", mileage.toString());
+
+        map.put(EXTRA_DATA_KEY, extendedData.toMap());
         return map;
     }
 
